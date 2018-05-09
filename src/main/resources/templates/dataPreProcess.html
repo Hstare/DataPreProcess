@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Data Visualization</title>
+    <meta charset="utf-8">
+    <script th:src="@{https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js}"></script>
+    <script th:src="@{https://cdn.bootcss.com/echarts/4.0.4/echarts.min.js}"></script>
+
+    <script th:src="@{https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+    <link th:href="@{https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/data.css}">
+    <!--<script type="text/javascript" th:src="@{/static/js/data.js}"></script>-->
+</head>
+<body>
+<div id="header">
+    <ul class="navbar-nav bd-navbar-nav flex-row nav">
+        <li class="nav-item">
+            <a class="nav-link " href="/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Bootstrap');">Process</a>
+        </li>
+    </ul>
+</div>
+<div th:id="file">
+    <label for="fileInput">请打开文件:</label>
+    <input id="fileInput" type="file" name="file">
+</div>
+<!-- <span>wo shi span </span> -->
+<div id="main">
+    <!--start 当前关系-->
+    <div class="relation">
+        <h4>Current relation</h4>
+        <p class="rel">
+            <span class="alignRight" >Relation:</span>
+            <span class="variate" th:id="relation">None</span>
+            <span class="alignRight" >Attributes:</span>
+            <span class="variate" th:id="attributes">None</span>
+        </p>
+        <p class="rel">
+            <span class="alignRight" >Instance:</span>
+            <span class="variate" th:id="instance">None</span>
+            <span class="alignRight" >Sum of weights:</span>
+            <span class="variate" th:id="weights">None</span>
+        </p>
+    </div>
+    <!--start 属性结果-->
+    <div class="attr">
+        <div class="parting">
+            <h4>Attributes</h4>
+            <button type="button" class="btn btn-success all">All</button>
+            <button type="button" class="btn btn-success none">None</button>
+            <button type="button" class="btn btn-success invent">Invent</button>
+            <button type="button" class="btn btn-success pattern" disabled="disabled">Pattern</button>
+        </div>
+        <table class="table table-striped attrTable">
+            <tr>
+                <th th:id="no" value="nihao">No</th>
+                <th style="width: 10px;">#</th>
+                <th>Name</th>
+            </tr>
+        </table>
+        <input type="button" name="attr" id="remove" value="remove"/>
+    </div>
+    <!--start 统计结果-->
+    <div class="statistic">
+        <div class="displayAttr">
+            <h4>statistic:</h4>
+            <p class="sta">
+                <span class="staNameTop">Name:</span>
+                &nbsp;&nbsp;
+                <span class="name"  th:placeholder="None">None</span>
+                <span class="staNameTop">Type:</span>&nbsp;&nbsp;
+                <span class="type" >None</span>
+            </p>
+            <p class="sta">
+                <span class="staNameBottom">Missing:</span>
+                &nbsp;&nbsp;
+                <span class="missing">None</span>
+                (<span class="missPer" >None</span>)%
+                <span class="staNameBottom">Distinct:</span>
+                &nbsp;&nbsp;
+                <span class="distinct" >None</span>
+                <span class="staNameBottom">Unique:</span>
+                &nbsp;&nbsp;
+                <span class="unique" >None</span>
+                (<span class="uniquePer" >None</span>)%
+            </p>
+        </div>
+        <div class="DisplayTable">
+            <table class="table table-striped firstTable">
+                <tr>
+                    <th>Stastic</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td th:id="tdMin">None</td>
+                    <td class="tdMin" >None</td>
+                </tr>
+                <tr>
+                    <td th:id="tdMax">None</td>
+                    <td class="tdMax" >None</td>
+                </tr>
+                <tr>
+                    <td th:id="tdMean">None</td>
+                    <td class="tdMean" >None</td>
+                </tr>
+                <tr>
+                    <td th:id="tdStd">None</td>
+                    <td class="tdStd">None</td>
+                </tr>
+            </table>
+            <table class="table table-striped secondTable" style="display: none">
+                <tr>
+                    <th>No.</th>
+                    <th>label</th>
+                    <th>Count</th>
+                    <th>Weight</th>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <!--start 图标展示-->
+    <div class="charts">
+        <h4 class="chatHead">charts:</h4>
+        <!--<button type="button" class="btn btn-success visualize">Visualize All</button>-->
+        <div id="barChart" style="width: 650px;height:80%;"></div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/js/data.js}"></script>
+</body>
+</html>
